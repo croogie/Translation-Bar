@@ -1,0 +1,50 @@
+#dictionary-content {
+    padding: 10px 10px 10px 10px;
+}
+
+ul.megaslownik {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.megaslownik .definicja {
+    margin-bottom: 5px;
+    border: 1px dashed #EEE;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.megaslownik .definition {
+    font-weight: bold;
+    color: #444;
+    margin-right: 15px;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
+.megaslownik .definicja .right {
+    float: right;
+    color: #FFF;
+}
+
+.megaslownik .definicja .example {
+    font-size: 10px;
+    font-style: italic;
+    color: #3d773d;
+    background-color: #dfeedf;
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+.megaslownik .definicja .zobaczrowniez {
+    font-size: 10px;
+    color: #3d6577;
+    background-color: #dfebee;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-top: 1px;
+}
+.megaslownik .definicja .zobaczrowniez a {
+    margin-right: 5px;
+}
