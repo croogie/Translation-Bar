@@ -8,6 +8,10 @@ var parser = {
 
         returnedContent = $('<div class="megaslownik" />');
 
+//        $('.znaczenie', content).each(function(i, znaczenie){
+//            console.log($.trim($(znaczenie).nextUntil('.znaczenie').parent().html()));
+//        });
+
         $('.definicja', content).each(function(i, def){
             var definicja = $('<li />', {
                 class: 'definicja'
