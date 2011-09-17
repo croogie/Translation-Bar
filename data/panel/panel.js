@@ -8,6 +8,38 @@ jlog = function(jq){
     console.log(t);
 }
 
+var requestCopyToClipboard = function(e){
+    var container = $(this).parent();
+    var text = '';
+    var textExample = [];
+
+    $('.definicja', container).each(function(i, definicja){
+        $('a.definition', definicja).each(function(i, def){
+            text += $(def).text() + '; ';
+        });
+
+        text += '(kat.:' + $.map($('.podkategoria', definicja), function(el){
+            return $(el).text();
+        }).join(',') + ') ';
+
+        $('.example', definicja).each(function(i, example){
+            nextExample = textExample.length+1;
+            text += '('+nextExample+') ';
+            var tExample = $(example).clone();
+            $('.right', tExample).remove();
+            textExample.push('('+nextExample+') '+$.trim(tExample.text()));
+        });
+
+        text += '\n';
+    });
+
+    text += '\n'+$('h1 strong').text();
+    if (textExample.length)
+        text += '\n'+textExample.join('\n')
+
+    self.port.emit('copyToClipboardRequest', text);
+}
+
 var parser = {
     megaslownik: function(content){
 
@@ -15,15 +47,23 @@ var parser = {
 
         $znaczenia = $('.znaczenie', content);
 
-        console.log('Znaleziono ', $znaczenia.length, ' znaczenia');
-
         $znaczenia.each(function(i, znaczenie){
             var znaczenieContent = $('<div />', {
-                class: 'znaczenie',
-                html: $(znaczenie).html()
+                class: 'znaczenie'
             });
+            znaczenieContent.append($('<a />', {
+                href: 'javascript:void(0);',
+                click: requestCopyToClipboard,
+                text: 'copy',
+                css: {
+                    float: 'right',
+                    fontSize: '10px',
+                    padding: '3px 5px'
+                }
+            }));
+            znaczenieContent.append($(znaczenie).html());
+
             var znaczenieToProcess;
-            
             if (i+1 == $znaczenia.length) {
                 // ostatnie znaczenie (czytamy do końca)
                 znaczenieToProcess = $(znaczenie).nextAll();
@@ -36,9 +76,17 @@ var parser = {
                 var definicja = $('<div />', {
                     class: 'definicja'
                 });
+
+                var podKatPatt = /\(kat.:\s?([^\)]+)\)/g;
+                $('span.podkategoria', def).each(function(i, el){
+                    $.each(podKatPatt.exec($(el).text())[1].split(","), function(i, el){
+                        definicja.append($('<span />', {text: el, 'class': 'podkategoria'}));
+                    });
+                });
+
                 $('a:not(.ikona_sluchaj2)', def).each(function(i, el){
                     $(el).attr('href', '#').click(translateMe).addClass('definition').appendTo(definicja);
-                })
+                });
 
                 $(def).nextUntil('.definicja').each(function(i, el){
                     // przykłady
@@ -67,8 +115,6 @@ var parser = {
 
             returnedContent.append(znaczenieContent);
         })
-
-        jlog(returnedContent);
         return returnedContent;
     },
     ling: function(content){
@@ -81,7 +127,6 @@ self.port.on('translationResponse', function(data){
 
     switch(data.type){
         case 'megaslownik':
-            console.log('tłumaczenie: ', $('#word2', $(data.content)).html())
             content = parser.megaslownik($('#word2', $(data.content)));
             break;
 
@@ -89,7 +134,7 @@ self.port.on('translationResponse', function(data){
             content = $(data.content);
     }
 
-    $('h1.phrase').html(data.phrase+' &nbsp; <small>MegaSlownik.pl</small>');
+    $('h1.phrase').html('<strong>'+data.phrase+'</strong> &nbsp; <small>MegaSlownik.pl</small>');
     $('.'+data.type).html(content);
 });
 

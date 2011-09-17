@@ -2,6 +2,11 @@ This is the translation-bar add-on.  It contains:
 
 Changelog:
 
+v0.4
+---------------
+ * Getting category information
+ * Copy to clipboard feature
+
 v0.3
 ---------------
  * Getting selected text (and translating it) while pressing CTRL+ALT+I shortcut.

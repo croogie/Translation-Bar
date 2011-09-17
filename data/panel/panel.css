@@ -60,13 +60,24 @@ ul.megaslownik {
     margin-top: 3px;
 }
 
+.megaslownik .definicja .podkategoria {
+    font-size: 10px;
+    color: #c3b292;
+    background-color: #f5e0b8;
+    border-radius: 3px;
+    padding: 2px 3px;
+    float: right;
+    display: inline-block;
+    margin-left: 2px;
+}
+
 .megaslownik .definicja .zobaczrowniez {
     font-size: 10px;
     color: #3d6577;
     background-color: #dfebee;
     padding: 3px 5px;
     border-radius: 3px;
-    margin-top: 1px;
+    margin-top: 3px;
 }
 .megaslownik .definicja .zobaczrowniez a {
     margin-right: 5px;
