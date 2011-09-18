@@ -2,6 +2,10 @@ This is the translation-bar add-on.  It contains:
 
 Changelog:
 
+v0.4.1
+---------------
+ * Parsed type information (like rzeczownik, przymiotnik etc.)
+
 v0.4
 ---------------
  * Getting category information

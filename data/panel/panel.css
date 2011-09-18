@@ -60,6 +60,14 @@ ul.megaslownik {
     margin-top: 3px;
 }
 
+.megaslownik .definicja .typ_opis {
+    color: #00cc99;
+    font-size: 10px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 2px 3px;
+}
+
 .megaslownik .definicja .podkategoria {
     font-size: 10px;
     color: #c3b292;

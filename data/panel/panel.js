@@ -14,6 +14,10 @@ var requestCopyToClipboard = function(e){
     var textExample = [];
 
     $('.definicja', container).each(function(i, definicja){
+        $('.typ_opis', definicja).each(function(i, typ){
+            text += '|'+$(typ).text() + '| ';
+        });
+
         $('a.definition', definicja).each(function(i, def){
             text += $(def).text() + '; ';
         });
@@ -82,6 +86,10 @@ var parser = {
                     $.each(podKatPatt.exec($(el).text())[1].split(","), function(i, el){
                         definicja.append($('<span />', {text: el, 'class': 'podkategoria'}));
                     });
+                });
+
+                $('.typ_opis', def).each(function(i, el) {
+                    definicja.append(el);
                 });
 
                 $('a:not(.ikona_sluchaj2)', def).each(function(i, el){
