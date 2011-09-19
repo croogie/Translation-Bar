@@ -22,9 +22,10 @@ var requestCopyToClipboard = function(e){
             text += $(def).text() + '; ';
         });
 
-        text += '(kat.:' + $.map($('.podkategoria', definicja), function(el){
-            return $(el).text();
-        }).join(',') + ') ';
+        if ($('.podkategoria', definicja).length)
+            text += '(kat.:' + $.map($('.podkategoria', definicja), function(el){
+                return $(el).text();
+            }).join(',') + ') ';
 
         $('.example', definicja).each(function(i, example){
             nextExample = textExample.length+1;
