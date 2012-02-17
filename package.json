@@ -2,7 +2,7 @@
     "name": "translation-bar",
     "license": "LGPL 2.1",
     "author": "Michał Świtoń <switonmichal@gmail.com>",
-    "version": "0.4",
+    "version": "0.4.2",
     "fullName": "Translation Bar",
     "id": "jid1-EWS4kVkfyZxCjA", 
     "description": "Search for translation using MegaSlownik.pl"

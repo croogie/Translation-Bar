@@ -47,7 +47,6 @@ var requestCopyToClipboard = function(e){
 
 var parser = {
     megaslownik: function(content){
-
         returnedContent = $('<div class="megaslownik" />');
 
         $znaczenia = $('.znaczenie', content);
